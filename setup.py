@@ -10,7 +10,7 @@ setuptools.setup(
     description="A Docker and AWS utility package",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com:Ziaeemehr/itng_toolbox"
+    url="https://github.com/Ziaeemehr/itng_toolbox",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
