@@ -2,15 +2,15 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 setuptools.setup(
-    name='dokr',
+    name='itng',
     version='0.1',
-    scripts=['dokr'],
+    scripts=['itng'],
     author="Deepak Kumar",
-    author_email="deepak.kumar.iet@gmail.com",
+    author_email="a.ziaeemehr@gmail.com",
     description="A Docker and AWS utility package",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/javatechy/dokr",
+    url="https://github.com:Ziaeemehr/itng_toolbox"
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
