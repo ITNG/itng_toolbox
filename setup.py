@@ -5,7 +5,7 @@ setuptools.setup(
     name='itng',
     version='0.1',
     scripts=['itng'],
-    author="Deepak Kumar",
+    author="Abolfazl Ziaeemehr",
     author_email="a.ziaeemehr@gmail.com",
     description="A Docker and AWS utility package",
     long_description=long_description,
