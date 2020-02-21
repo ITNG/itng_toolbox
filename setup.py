@@ -3,11 +3,11 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 setuptools.setup(
     name='itng',
-    version='0.1',
-    scripts=['itng'],
+    version='0.1.2',
+    # scripts=['itng'],
     author="Abolfazl Ziaeemehr",
     author_email="a.ziaeemehr@gmail.com",
-    description="A Docker and AWS utility package",
+    description="Institute for Advanced Studies in Basic Sciences (IASBS) theoretical neuroscience group toolbox.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Ziaeemehr/itng_toolbox",
@@ -17,4 +17,5 @@ setuptools.setup(
          "License :: OSI Approved :: MIT License",
          "Operating System :: OS Independent",
     ],
+    python_requires='>=3.1',
 )
