@@ -1,4 +1,6 @@
+e/
 dist/
 build/
 itng.egg-info
 *.pyc
+
