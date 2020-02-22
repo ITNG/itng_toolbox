@@ -14,7 +14,7 @@ import os
 
 def isi(spikeTimes, gids):
     """
-    calculate interspike interval of given population
+    calculate interspike interval of given spike train
 
     :param spikeTimes: time of spikes 1 dimensional array, list or tuple
     :param gids: global ID of neurons
@@ -40,7 +40,7 @@ def spike_synchrony(ts, gids, threshold_num_spikes=10):
     :param ts: time of spikes 1 dimensional array, list or tuple.
     :param gids: global ID of neurons.
     :param threshold_num_spikes: minimum number of spikes required for calculation of measure.
-    :return: [float] spike synchrony as float number in [0, 1].
+    :return: [float] spike synchrony in [0, 1].
 
     Reference
     
@@ -62,16 +62,26 @@ def spike_synchrony(ts, gids, threshold_num_spikes=10):
         return sync
 # ---------------------------------------------------------------#
 
-# Lim, W. & Kim, S. Y. Coupling-induced spiking coherence in coupled subthreshold neurons. Int. J. Mod. Phys. B 23,
-# 2149–2157 (2009)
+def voltage_synchrony(self, voltages):
+    """
+    calculate voltage synchrony.
+
+    :param voltages: [ndarray, nested list or nested tuple (number of nodes by number of time steps)] votages of n nodes. 
+    :return: [float] voltage synchrony in [0, 1]
+
+    Reference:
+
+    -  Lim, W. & Kim, S. Y. Coupling-induced spiking coherence in coupled subthreshold neurons. Int. J. Mod. Phys. B 23, 2149–2157 (2009)
+
+    """
 
 
 def calculate_NMI(comm1, comm2, method="nmi"):
     """
     Compares two community structures
 
-    :param communities1: the first community structure as a membership list or as a Clustering object.
-    :param communities2: the second community structure as a membership list or as a Clustering object.
+    :param comm1: the first community structure as a membership list or as a Clustering object.
+    :param comm2: the second community structure as a membership list or as a Clustering object.
     :param method: [string] defaults to ["nmi"] the measure to use. "vi" or "meila" means the variation of information metric of Meila (2003), "nmi" or "danon" means the normalized mutual information as defined by Danon et al (2005), "split-join" means the split-join distance of van Dongen (2000), "rand" means the Rand index of Rand (1971), "adjusted_rand" means the adjusted Rand index of Hubert and Arabie (1985).
     :return: [float] the calculated measure.
 
