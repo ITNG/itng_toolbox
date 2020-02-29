@@ -3,4 +3,4 @@
 
 ## Unter construction.
 
--  It will be availabel soon as itng package in Pypi.
+-  It will be availabel soon in Pypi.
