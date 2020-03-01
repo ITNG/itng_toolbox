@@ -1,2 +1,2 @@
-from .myModules import *
-from .generateNetworks import *
+from .modules import *
+from .networks import *

@@ -1,8 +1,8 @@
 Auto Generated Documentation 
 ==============================
 
-.. automodule:: myModules
+.. automodule:: modules
     :members:
 
-.. automodule:: generateNetworks
+.. automodule:: networks
     :members:
