@@ -1,8 +1,18 @@
 Auto Generated Documentation 
 ==============================
 
-.. automodule:: modules
-    :members:
 
 .. automodule:: networks
+    :members:
+
+.. automodule:: graphUtility
+    :members:
+
+.. automodule:: statistics
+    :members:
+
+.. automodule:: synchrony
+    :members:
+
+.. automodule:: randomGenerators
     :members:

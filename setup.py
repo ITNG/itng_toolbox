@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='itng',
-    version='0.1.3',
+    version='0.1.4',
     # scripts=['itng'],
     author="Abolfazl Ziaeemehr",
     author_email="a.ziaeemehr@gmail.com",
