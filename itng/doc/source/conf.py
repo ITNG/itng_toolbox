@@ -33,7 +33,9 @@ release = '0.1.2'
 extensions = ['sphinx.ext.todo',
               'sphinx.ext.viewcode',
               'sphinx.ext.autodoc',
-              'sphinx.ext.githubpages']
+              'sphinx.ext.githubpages',
+            #   'sphinxcontrib.plantuml',
+              'sphinx.ext.inheritance_diagram']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

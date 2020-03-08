@@ -2,12 +2,12 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-with open("requirements.txt") as f:
-    requirements = f.read().splitlines()
+# with open("requirements.txt") as f:
+#     requirements = f.read().splitlines()
 
 setuptools.setup(
     name='itng',
-    version='0.1.2',
+    version='0.1.3',
     # scripts=['itng'],
     author="Abolfazl Ziaeemehr",
     author_email="a.ziaeemehr@gmail.com",
@@ -22,6 +22,6 @@ setuptools.setup(
          "Operating System :: OS Independent",
     ],
     python_requires='>=3.1',
-    install_requires=requirements,
-    include_package_data=True,
+    # install_requires=requirements,
+    # include_package_data=True,
 )
