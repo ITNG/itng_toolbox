@@ -14,5 +14,8 @@ Auto Generated Documentation
 .. automodule:: synchrony
     :members:
 
-.. automodule:: randomGenerators
+.. automodule:: randomSequence
+    :members:
+
+.. automodule:: signal_processing
     :members:

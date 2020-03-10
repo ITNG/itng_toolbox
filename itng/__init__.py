@@ -1,27 +1,12 @@
-
-# from . import (networks,
-#                drawing,
-#                statistics,
-#                synchrony,
-#                graphUtility,
-#                randomGenerators)
-
 try:
     from . import (synchrony,
                    statistics,
-                   randomGenerators,
+                   randomSequence,
                    graphUtility,
                    drawing,
-                   networks
+                   networks,
+                   signal_processing,
     )
 except Exception as error:
     print (error)
     
-
-# try:
-#     from . import networks
-# except Exception as error:
-#     print (error)
-
-# except:
-#     print("Error")
