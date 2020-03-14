@@ -1,6 +1,7 @@
 import numpy as np
 import networkx as nx
 from random import shuffle
+import igraph
 
 
 def extract_attributes(G, attr=None):
@@ -176,6 +177,44 @@ def multilevel(adj_matrix, directed=False, return_levels=False):
 
 # ---------------------------------------------------------------#
 
+def walktrap(adj, steps=5):
+
+    """
+    Community detection algorithm of Latapy & Pons, based on random walks. The basic idea of the algorithm is that short random walks tend to stay in the same community. The result of the clustering will be represented as a dendrogram.
+
+    :param adj: name of an edge attribute or a list containing edge weights
+    :param steps: length of random walks to perform
+    :return: a L{VertexDendrogram} object, initially cut at the maximum  modularity.
+
+    :Reference: 
+    
+    -  Pascal Pons, Matthieu Latapy: Computing communities in large networks using random walks, U{http://arxiv.org/abs/physics/0512106}.
+
+    >>> adj = np.random.rand(20, 20)
+    >>> print(walktrap(adj))
+    >>> # Clustering with 20 elements and 2 clusters
+    >>> # [0] 0, 5, 8, 10, 19
+    >>> # [1] 1, 2, 3, 4, 6, 7, 9, 11, 12, 13, 14, 15, 16, 17, 18
+
+    """
+    
+
+    conn_indices = np.where(adj)
+    weights = adj[conn_indices]
+    edges = list(zip(*conn_indices))
+    G = igraph.Graph(edges=edges, directed=False)
+    comm = G.community_walktrap(weights, steps=steps)
+    communities = comm.as_clustering()
+    
+    # print comm
+    # print("%s number of clusters = %d " % (
+    #     label, len(communities)))
+    # print "optimal count : ", comm.optimal_count
+
+    return communities
+
+
+# ---------------------------------------------------------------#
 
 def find_indices_with_distance(DiGraph, distance, source):
     """
