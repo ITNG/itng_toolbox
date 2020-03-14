@@ -19,3 +19,6 @@ Auto Generated Documentation
 
 .. automodule:: signal_processing
     :members:
+
+.. automodule:: drawing
+    :members:
