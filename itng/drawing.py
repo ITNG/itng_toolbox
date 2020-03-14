@@ -14,7 +14,7 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 class Drawing(object):
 
     """
-    plot the adjacency matrix of given graph
+    draw graphs in different representation.
     """
 
     def __init__(self):
@@ -22,7 +22,7 @@ class Drawing(object):
 
     @staticmethod
     def plot_adjacency_matrix(G,
-                              fileName='R.png',
+                              file_name='R.png',
                               cmap='afmhot',
                               figsize=(5, 5),
                               labelsize=None,
@@ -32,6 +32,14 @@ class Drawing(object):
                               vmin=None,
                               colorbar=True,
                               ax=None):
+        """
+        plot the adjacency matrix of given graph
+
+        :param G: networkx graph
+        :param file_name: [string] file name to save the figure. 
+        :param figsize: (float, float) the dimension of the figure.
+
+        """
 
         from mpl_toolkits.axes_grid1 import make_axes_locatable
 
@@ -61,7 +69,7 @@ class Drawing(object):
             ax.set_yticks([])
 
         if saveFig:
-            pl.savefig(fileName)
+            pl.savefig(file_name)
             pl.close()
 # ------------------------------------------------------------------#
 
@@ -79,9 +87,9 @@ def make_grid(nrows,
 
     :param nrows: [int] number of rows in figure
     :param ncols: [int] number of columns in figure
-    :param left, right, top, bottom: float, optional. Extent of the subplots as a fraction of figure width or height. Left cannot be larger than right, and bottom cannot be larger than top.
-    :param hspace: The amount of height reserved for space between subplots, expressed as a fraction of the average axis height.
-    :param wspace: The amount of width reserved for space between subplots, expressed as a fraction of the average axis width.
+    :param left, right, top, bottom: [float], optional. Extent of the subplots as a fraction of figure width or height. Left cannot be larger than right, and bottom cannot be larger than top.
+    :param hspace: [flaot], optional. The amount of height reserved for space between subplots, expressed as a fraction of the average axis height.
+    :param wspace: [float], optional. The amount of width reserved for space between subplots, expressed as a fraction of the average axis width.
     :return: axes of gridded figure
 
     >>> import pylab as pl
@@ -91,7 +99,7 @@ def make_grid(nrows,
     >>> pl.show()
 
     """
-    
+
     gs = GridSpec(nrows, ncols)
     gs.update(left=left, right=right,
               hspace=hspace, wspace=wspace,
@@ -102,5 +110,102 @@ def make_grid(nrows,
         for j in range(ncols):
             ax_row.append(pl.subplot(gs[i, j]))
         ax.append(ax_row)
+        
     return ax
+# ---------------------------------------------------------------------- #
+
+
+def plot_scatter(x, y,
+                 ax,
+                 xlabel=None,
+                 ylabel=None,
+                 xlim=None,
+                 ylim=None,
+                 color="k",
+                 alpha=0.4,
+                 markersize=10,
+                 labelsize=14,
+                 title=None):
+    """
+    scatter plot.
+
+    :param x: [np.array] values on x axis.
+    :param y: [np.array] values on y axis, with save size of x values.
+    :param ax: axis of figure to plot the figure.
+    :param xlabel: if given, label of x axis.
+    :param ylabel: if given, label of y axis.
+    :param xlim: [float, float] limit of x values.
+    :param ylim: [float, float] limit of y values.
+    :param color: [string] color of markers.
+    :param alpha: [float] opacity of markers in [0, 1].
+    :param markersize: [int] size of marker.
+    :param title: title of fiure.
+    :return: axis with plot
+    """
+
+    xl = x.reshape(-1)
+    yl = y.reshape(-1)
+
+    assert (len(xl) == len(yl))
+
+    ax.scatter(xl, yl, s=markersize,
+               color=color, alpha=alpha)
+
+    if xlabel:
+        ax.set_xlabel(xlabel)
+    if ylabel:
+        ax.set_ylabel(ylabel)
+    if ylim:
+        ax.set_ylim(ylim)
+    if xlim:
+        ax.set_xlim(xlim)
+
+    ax.tick_params(labelsize=labelsize)
+
+    if (xlim is None) and (ylim is None):
+        ax.margins(x=0.02, y=0.02)
+
+    if title:
+        ax.set_title(title)
+
+    return ax
+# ---------------------------------------------------------------------- #
+
+
+def fit_line(X,
+             Y,
+             ax,
+             color="k",
+             alpha=0.4,
+             labelsize=14,
+             ):
+            
+    """
+    fit a line to given values.
+
+    :param X: [np.array] values on x axis
+    :param Y: [np.array] values on y axis
+    :param ax: axis to plot the line
+    :param color: [string] color of the line
+    :param alpha: [float] opacity of the line
+    :param labelsize: size of labels on axises
+    :return: axis with plot
+    """
+
+    import statsmodels.formula.api as smf
+
+    x = X.reshape(-1)
+    y = Y.reshape(-1)
+
+    assert(len(x) == len(y))
+
+    df_data = pd.DataFrame({"y": y, "x": x})
+    model = smf.ols("y ~ 1 + x", df_data)
+    result = model.fit()
+    ax.plot(x, result.fittedvalues, lw=2, c="r",
+            label="y=ax+b, a=%.3f" % result.params["x"])
+    ax.legend(loc="lower right")
+
+    return ax
+
 # ---------------------------------------------------------------------- #
