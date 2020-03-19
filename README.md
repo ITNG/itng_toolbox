@@ -3,6 +3,18 @@
 
 #### Please look at the [documentation](https://github.com/Ziaeemehr/itng_toolbox/blob/master/itng/doc/build/latex/itngtoolbox.pdf).
 
+### installation
+
+#### from pip
+```sh
+pip3 install itng
+```
+
+#### from source code
+```sh
+sudo python3 setup.py install
+```
+
 -  to update the documentation:
 
 ```sh
@@ -16,15 +28,4 @@ cd itng/tests/
 python3 test*.py
 ```
 
-### installation
-
-#### from pip
-```sh
-pip3 install itng
-```
-
-#### from source code
-```sh
-sudo python3 setup.py install
-```
 
