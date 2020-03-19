@@ -10,9 +10,21 @@ cd itng/doc
 make html       # for html files
 make latexpdf   # for pdf file
 ```
-    
-    
+-  to run the test
+```sh
+cd itng/tests/
+python3 test*.py
+```
 
+### installation
+
+#### from pip
 ```sh
 pip3 install itng
 ```
+
+#### from source code
+```sh
+sudo python3 setup.py install
+```
+
