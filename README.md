@@ -44,7 +44,7 @@ git add [files added or changed]
 git commit -m "message to commit"
 git push origin2 new_branch_name
 ```
-then go to the repository and click on the green button <pull request>.
+then go to the repository and click on the green button **pull request**.
 
 
 
