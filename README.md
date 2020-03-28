@@ -28,4 +28,23 @@ cd itng/tests/
 python3 test*.py
 ```
 
+### How to contribute
+#### Step 1: Set up a working copy on your computer
+
+```sh
+git clone git@github.com:Ziaeemehr/itng_toolbox.git
+git remote add origin2 git@github.com:YOUR_USERNAME/itng_toolbox.git
+git remote -v
+```
+#### Step 2: Do some work and push changes
+
+```sh
+git checkout -b new_branch_name
+git add [files added or changed]
+git commit -m "message to commit"
+git push origin2 new_branch_name
+```
+then go to the repository and click on the green button <pull request>.
+
+
 
