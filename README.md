@@ -1,7 +1,7 @@
 ### This is ITNG toolbox package.
 -  IASBS Theoretical Neuroscience Group toolbox, to analysis the time series, spike trains and graphs in python.
 
-#### Please look at the [documentation](https://github.com/Ziaeemehr/itng_toolbox/blob/master/itng/doc/build/latex/itngtoolbox.pdf).
+#### Please look at the [documentation](https://github.com/itng/itng_toolbox/blob/master/itng/doc/build/latex/itngtoolbox.pdf).
 
 ### installation
 
@@ -32,7 +32,7 @@ python3 test*.py
 #### Step 1: Set up a working copy on your computer
 
 ```sh
-git clone git@github.com:Ziaeemehr/itng_toolbox.git
+git clone git@github.com:itng/itng_toolbox.git
 git remote add origin2 git@github.com:YOUR_USERNAME/itng_toolbox.git
 git remote -v
 ```
