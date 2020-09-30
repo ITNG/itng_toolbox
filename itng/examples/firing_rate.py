@@ -22,7 +22,8 @@ from sklearn.model_selection import GridSearchCV
 import numpy as np
 import pylab as pl
 from os.path import join
-import itng.statistics import sshist, find_optimum_bandwidth
+from itng.statistics import (sshist, optimal_bandwidth,
+                             optimal_num_bins)
 
 
 with open(join("data.txt"), "r") as f:
@@ -39,47 +40,18 @@ ax.set_xlabel('spike times (s)')
 ax.set_ylabel("density")
 
 
-def optimal_num_bins(spike_times, plot=False, ax=None):
-
-    spike_times = np.asarray(spike_times)
-    a = kde.sshist(spike_times)
-    # print(type(a))
-    # print(a[0], a[1], len(a[2]), len(a[3]))
-    bins = a[2]
-    if plot:
-        if ax is None:
-            fig, ax = pl.subplots(nrows=1, ncols=3, figsize=(10, 4))
-        ax.hist(spike_times, bins=bins, alpha=0.5, density=True)
-        # ax.plot(a[3], "k.")
-
-    return bins
-
-
-print("The optimum number of bins : ",
-      optimal_num_bins(spike_times, plot=True, ax=ax).shape)
+bins = optimal_num_bins(spike_times) 
+print("The optimum number of bins : ", len(bins))
 
 
 # Kernel Density Estimation
 # Selecting the bandwidth via cross-validation
 
+# bandwidth = optimal_bandwidth(spike_times)
+# print(bandwidth)
+bandwidth = 0.126
 
-def find_optimum_bandwidth(spike_times,
-                           bandwidths=10 ** np.linspace(-1, 1, 100)):
-
-    grid = GridSearchCV(KernelDensity(kernel='gaussian'),
-                        {'bandwidth': bandwidths},
-                        cv=LeaveOneOut())
-    grid.fit(spike_times[:, None])
-    bandwidth = grid.best_params_
-    return bandwidth['bandwidth']
-
-bandwidth = find_optimum_bandwidth(spike_times)
-print(bandwidth)
-# bandwidth = 0.126
-
-
-
-# the spikes need to be sorted 
+# the spikes need to be sorted
 spike_times = np.sort(spike_times)
 
 # instantiate and fit the KDE model
@@ -89,7 +61,7 @@ kde.fit(spike_times[:, None])
 # score_samples returns the log of the probability density
 logprob = kde.score_samples(spike_times[:, None])
 
-# ax.fill_between(spike_times, np.exp(logprob), alpha=0.5)
+ax.fill_between(spike_times, np.exp(logprob), alpha=0.5)
 ax.plot(spike_times, np.exp(logprob), alpha=1, lw=2, color="k")
 pl.savefig("images/fig.png")
 pl.close()

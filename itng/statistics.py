@@ -159,7 +159,7 @@ def optimal_num_bins(spike_times, plot=False, ax=None):
     firing rate.
     '''
     spike_times = np.asarray(spike_times)
-    a = kde.sshist(spike_times)
+    a = sshist(spike_times)
     # print(type(a))
     # print(a[0], a[1], len(a[2]), len(a[3]))
     bins = a[2]
@@ -173,7 +173,7 @@ def optimal_num_bins(spike_times, plot=False, ax=None):
 # ---------------------------------------------------------------#
 
 
-def find_optimum_bandwidth(spike_times,
+def optimal_bandwidth(spike_times,
                            bandwidths=10 ** np.linspace(-1, 1, 100)):
     """
     find the optimum bandwith for spike rate estimation
