@@ -322,3 +322,35 @@ def calculate_NMI(comm1, comm2, method="nmi"):
         comm1, comm2, method='nmi', remove_none=False)
     return nmi
 # ------------------------------------------------------------------#
+
+def degree_BDN(A):
+    """
+    calculate degrees of Binary Directed network
+
+    :param A: adjacency matrix of a binary directed network.
+    :return: [dictionary] in_degree, out_degree, tot_degree and bilateral_degree
+
+    Reference:
+    
+    - Clustering in complex directed networks by G. Fagiolo, Physical Review E, 76(2), 026107 (2007).
+
+    """
+    A = np.asarray(A)
+    assert(isinstance(A[0, 0], np.int64))
+    assert(len(A.shape) == 2)
+    n = A.shape[0]
+    assert((np.diag(A) == np.zeros(n, dtype=int)).any())
+
+    G = nx.from_numpy_array(A, create_using=nx.DiGraph())
+    in_deg = np.asarray(list(dict(G.in_degree()).values()))
+    out_deg = np.asarray(list(dict(G.out_degree()).values()))
+
+    tot_deg = in_deg + out_deg
+
+    bilateral_deg = np.diag(matrix_power(A.T, 2))
+
+    return dict(in_degree=in_deg,
+                out_degree=out_deg,
+                tot_degree=tot_deg,
+                bilateral_degree=bilateral_deg)
+# ------------------------------------------------------------------#
