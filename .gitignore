@@ -3,4 +3,7 @@ dist/
 build/
 itng.egg-info
 *.pyc
+*.npz
+*.png
+
 

@@ -296,7 +296,7 @@ def clusters_info_modular(G, clusters, verbosity=True):
 # ------------------------------------------------------------------#
 
 
-def calculate_NMI(self, comm1, comm2, method="nmi"):
+def calculate_NMI(comm1, comm2, method="nmi"):
     """
     Compares two community structures
 
@@ -319,6 +319,6 @@ def calculate_NMI(self, comm1, comm2, method="nmi"):
     """
 
     nmi = igraph.compare_communities(
-        communities1, comm2, method='nmi', remove_none=False)
+        comm1, comm2, method='nmi', remove_none=False)
     return nmi
 # ------------------------------------------------------------------#
