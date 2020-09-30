@@ -334,6 +334,13 @@ def degree_BDN(A):
     
     - Clustering in complex directed networks by G. Fagiolo, Physical Review E, 76(2), 026107 (2007).
 
+    >>> G = nx.gnp_random_graph(10, 0.5, directed=True, seed=1)
+    >>> A = nx.to_numpy_array(G, dtype=int)  
+    >>> data = degree_BDN(A)
+    >>> tot_degree = data['tot_degree']
+    >>> bi_degree = data['bilateral_degree']
+
+
     """
     A = np.asarray(A)
     assert(isinstance(A[0, 0], np.int64))
