@@ -6,6 +6,7 @@ try:
                    drawing,
                    networks,
                    signal_processing,
+                   modules
     )
 except Exception as error:
     print (error)
