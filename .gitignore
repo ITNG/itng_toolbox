@@ -7,3 +7,4 @@ itng.egg-info
 *.png
 
 
+.ipynb_checkpoints/
