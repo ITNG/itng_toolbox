@@ -6,6 +6,7 @@ import pylab as pl
 from sys import exit
 from copy import copy
 import networkx as nx
+import scipy.io as sio
 from random import shuffle
 import matplotlib.pyplot as plt
 from scipy.optimize import bisect, newton, brenth
@@ -258,16 +259,16 @@ class Generators:
 
             # tune minimum degree of the node
             d_tuned = bisect(tune_dmin,
-                             dmin-3, dmin+10, # sweep the interval around dmin
+                             dmin-3, dmin+10,  # sweep the interval around dmin
                              args=(G, N, exp, expect_n_edges),
                              xtol=0.01)
 
             simple_seq = np.asarray([deg for (node, deg) in G.degree()])
             num_edges = np.sum(simple_seq)/2.0
             error = np.abs(num_edges - expect_n_edges)
-            
+
             if verbocity:
-                print ("dmin = %.2f, error = %d, n_edges = %d " % (
+                print("dmin = %.2f, error = %d, n_edges = %d " % (
                     d_tuned, error, num_edges))
 
             # check if number of edges is close to the expected number of edges
@@ -277,15 +278,15 @@ class Generators:
         if itr == num_trial-1:
             print("could not find a proper graph with given properties!")
             exit(0)
-    
+
     # ---------------------------------------------------------------#
 
     def hierarchical_modular_graph(self, n0,
-                                     level,
-                                     prob0,
-                                     prob,
-                                     alpha,
-                                     weights):
+                                   level,
+                                   prob0,
+                                   prob,
+                                   alpha,
+                                   weights):
         '''
         return a connected hierarchical modular network
 
@@ -354,3 +355,25 @@ class Generators:
         return G
 
     # ---------------------------------------------------------------#
+
+
+def connectome(name, path="dataset/connectome/"):
+    """
+    return the connectome data including the connections, length fibers and coordinates of nodes.
+    
+    - example
+
+    >>> C = connectome("hagmann_66.mat") #  hagmann_998.mat
+    >>> strength = C["strength"]          # [66 by 66] weighted connections
+    >>> lenghts = C["length"]             # [66 by 66] length of fibers
+    >>> coordinates = C["talairach"]      # [66 by 3] talairach coordinates
+    """
+
+    file = os.path.join(path, name)
+    mat_cont = sio.loadmat(file)
+    C = mat_cont['strength']
+    L = mat_cont['length']
+    xyz = mat_cont['talairach']
+
+    return {"strength": C, "length": L, "talairach": xyz}
+
